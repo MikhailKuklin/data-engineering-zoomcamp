@@ -1,3 +1,12 @@
+# Coveragae of flows and tasks prefect concepts
+# instructions
+# 1. Change owner of the folder if needed to avoid using sudo
+# 2. Start docker in week1: 'docker-compose up -d'
+# 3. Start pgcli: 'pgcli -h localhost -p 5432 -u root -d ny_taxi' 
+# 3. Run 'python ingest_data_flow.py'
+# 4. Run 'prefect orion start' ti start UI
+
+
 #!/usr/bin/env python
 # coding: utf-8
 import os
