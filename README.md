@@ -1,111 +1,224 @@
-### Introduction
-
-* [Video](https://www.youtube.com/watch?v=bkJZDmreIpA&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
-* [Slides](https://www.slideshare.net/AlexeyGrigorev/data-engineering-zoomcamp-introduction)
-* Overview of [Architecture](https://github.com/DataTalksClub/data-engineering-zoomcamp#overview), [Technologies](https://github.com/DataTalksClub/data-engineering-zoomcamp#technologies) & [Pre-Requisites](https://github.com/DataTalksClub/data-engineering-zoomcamp#prerequisites)
+# Data Engineering Zoomcamp
 
 
-We suggest watching videos in the same order as in this document.
+<p align="center">
+  <a href="https://airtable.com/shr6oVXeQvSI5HuWD"><img src="https://user-images.githubusercontent.com/875246/185755203-17945fd1-6b64-46f2-8377-1011dcb1a444.png" height="50" /></a>
+</p>
 
-The last video (setting up the environment) is optional, but you can check it earlier 
-if you have troubles setting up the environment and following along with the videos.
+- Register in [DataTalks.Club's Slack](https://datatalks.club/slack.html)
+- Join the [`#course-data-engineering`](https://app.slack.com/client/T01ATQK62F8/C01FABYF2RG) channel
+- Join the [course Telegram channel with announcements](https://t.me/dezoomcamp)
+- The videos are published on [DataTalks.Club's YouTube channel](https://www.youtube.com/c/DataTalksClub) in [the course playlist](https://www.youtube.com/playlist?list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
+- [Frequently asked technical questions](https://docs.google.com/document/d/19bnYs80DwuUimHM65UV3sylsCn2j1vziPOwzBwQrebw/edit?usp=sharing)
 
+Syllabus
 
-### Docker + Postgres
+* [Week 1: Introduction & Prerequisites](#week-1-introduction--prerequisites)
+* [Week 2: Workflow Orchestration](#week-2-workflow-orchestration)
+* [Week 3: Data Warehouse](#week-3-data-warehouse)
+* [Week 4: Analytics Engineering](#week-4-analytics-engineering)
+* [Week 5: Batch processing](#week-5-batch-processing)
+* [Week 6: Streaming](#week-6-streaming)
+* [Week 7, 8 & 9: Project](#week-7-8--9-project)
 
-[Code](2_docker_sql)
+## Taking the course
 
-* [Introduction to Docker](https://www.youtube.com/watch?v=EYNwNlOrpr0&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
-  * Why do we need Docker
-  * Creating a simple "data pipeline" in Docker
-* [Ingesting NY Taxi Data to Postgres](https://www.youtube.com/watch?v=2JM-ziJt0WI&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
-  * Running Postgres locally with Docker
-  * Using `pgcli` for connecting to the database
-  * Exploring the NY Taxi dataset
-  * Ingesting the data into the database
-  * **Note** if you have problems with `pgcli`, check [this video](https://www.youtube.com/watch?v=3IkfkTwqHx4&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
-    for an alternative way to connect to your database
-* [Connecting pgAdmin and Postgres](https://www.youtube.com/watch?v=hCAIVe9N0ow&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
-  * The pgAdmin tool
-  * Docker networks
-* [Putting the ingestion script into Docker](https://www.youtube.com/watch?v=B1WwATwf-vY&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
-  * Converting the Jupyter notebook to a Python script
-  * Parametrizing the script with argparse
-  * Dockerizing the ingestion script
-* [Running Postgres and pgAdmin with Docker-Compose](https://www.youtube.com/watch?v=hKI6PkPhpa0&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
-  * Why do we need Docker-compose
-  * Docker-compose YAML file
-  * Running multiple containers with `docker-compose up`
-* [SQL refresher](https://www.youtube.com/watch?v=QEcps_iskgg&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
-  * Adding the Zones table
-  * Inner joins
-  * Basic data quality checks
-  * Left, Right and Outer joins
-  * Group by
-* Optional: If you have some problems with docker networking, check [Port Mapping and Networks in Docker](https://www.youtube.com/watch?v=tOr4hTsHOzU&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
-  * Docker networks
-  * Port forwarding to the host environment
-  * Communicating between containers in the network
-  * `.dockerignore` file
+### 2023 Cohort
+
+* **Start**: 16 January 2023 (Monday) at 18:00 CET
+* **Registration link**: https://airtable.com/shr6oVXeQvSI5HuWD
+* Subscribe to our [public Google Calendar](https://calendar.google.com/calendar/?cid=ZXIxcjA1M3ZlYjJpcXU0dTFmaG02MzVxMG9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ) (it works from Desktop only)
+* [Cohort folder](cohorts/2023/) with homeworks and deadlines 
+
+### Self-paced mode
+
+All the materials of the course are freely available, so that you
+can take the course at your own pace
+
+* Follow the suggested syllabus (see below) week by week
+* You don't need to fill in the registration form. Just start watching the videos and join Slack
+* Check [FAQ](https://docs.google.com/document/d/19bnYs80DwuUimHM65UV3sylsCn2j1vziPOwzBwQrebw/edit?usp=sharing) if you have problems
+* If you can't find a solution to your problem in FAQ, ask for help in Slack
 
 
-### GCP + Terraform
 
-[Code](1_terraform_gcp)
+### Asking for help in Slack
 
-* Introduction to GCP (Google Cloud Platform)
-  * [Video](https://www.youtube.com/watch?v=18jIzE41fJ4&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
-* Introduction to Terraform Concepts & GCP Pre-Requisites
-  * [Video](https://www.youtube.com/watch?v=Hajwnmj0xfQ&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
-  * [Companion Notes](1_terraform_gcp)
-* Workshop: Creating GCP Infrastructure with Terraform
-  * [Video](https://www.youtube.com/watch?v=dNkEgO-CExg&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
-  * [Workshop](1_terraform_gcp/terraform)
-* Configuring terraform and GCP SDK on Windows
-  * [Instructions](1_terraform_gcp/windows.md)
+The best way to get support is to use [DataTalks.Club's Slack](https://datatalks.club/slack.html). Join the [`#course-data-engineering`](https://app.slack.com/client/T01ATQK62F8/C01FABYF2RG) channel.
+
+To make discussions in Slack more organized:
+
+* Follow [these recommendations](asking-questions.md) when asking for help
+* Read the [DataTalks.Club community guidelines](https://datatalks.club/slack/guidelines.html)
 
 
-### Environment setup 
+## Syllabus
 
-For the course you'll need:
+> **Note:** NYC TLC changed the format of the data we use to parquet. But you can still access
+> the csv files [here](https://github.com/DataTalksClub/nyc-tlc-data).
 
-* Python 3 (e.g. installed with Anaconda)
+### [Week 1: Introduction & Prerequisites](week_1_basics_n_setup)
+
+* Course overview
+* Introduction to GCP
+* Docker and docker-compose
+* Running Postgres locally with Docker
+* Setting up infrastructure on GCP with Terraform
+* Preparing the environment for the course
+* Homework
+
+[More details](week_1_basics_n_setup)
+
+
+### [Week 2: Workflow Orchestration](week_2_workflow_orchestration/)
+
+* Data Lake
+* Workflow orchestration
+* Introduction to Prefect
+* ETL with GCP & Prefect
+* Parametrizing workflows
+* Prefect Cloud and additional resources
+* Homework
+
+[More details](week_2_workflow_orchestration/)
+
+
+### [Week 3: Data Warehouse](week_3_data_warehouse)
+
+
+* Data Warehouse
+* BigQuery
+* Partitioning and clustering
+* BigQuery best practices
+* Internals of BigQuery
+* Integrating BigQuery with Airflow
+* BigQuery Machine Learning
+
+[More details](week_3_data_warehouse)
+
+
+### [Week 4: Analytics engineering](week_4_analytics_engineering/)
+
+* Basics of analytics engineering
+* dbt (data build tool)
+* BigQuery and dbt
+* Postgres and dbt
+* dbt models
+* Testing and documenting
+* Deployment to the cloud and locally
+* Visualizing the data with google data studio and metabase
+
+
+[More details](week_4_analytics_engineering)
+
+
+### [Week 5: Batch processing](week_5_batch_processing)
+
+* Batch processing
+* What is Spark
+* Spark Dataframes
+* Spark SQL
+* Internals: GroupBy and joins
+
+[More details](week_5_batch_processing)
+
+### [Week 6: Streaming](week_6_stream_processing)
+
+* Introduction to Kafka
+* Schemas (avro)
+* Kafka Streams
+* Kafka Connect and KSQL
+
+[More details](week_6_stream_processing)
+
+
+### [Week 7, 8 & 9: Project](week_7_project)
+
+Putting everything we learned to practice
+
+* Week 7 and 8: working on your project
+* Week 9: reviewing your peers
+
+[More details](week_7_project)
+
+
+## Overview
+
+### Architecture diagram
+<img src="images/architecture/arch_2.png"/>
+
+### Technologies
+* *Google Cloud Platform (GCP)*: Cloud-based auto-scaling platform by Google
+  * *Google Cloud Storage (GCS)*: Data Lake
+  * *BigQuery*: Data Warehouse
+* *Terraform*: Infrastructure-as-Code (IaC)
+* *Docker*: Containerization
+* *SQL*: Data Analysis & Exploration
+* *Prefect*: Workflow Orchestration
+* *dbt*: Data Transformation
+* *Spark*: Distributed Processing
+* *Kafka*: Streaming
+
+
+### Prerequisites
+
+To get the most out of this course, you should feel comfortable with coding and command line
+and know the basics of SQL. Prior experience with Python will be helpful, but you can pick
+Python relatively fast if you have experience with other programming languages.
+
+Prior experience with data engineering is not required.
+
+
+
+## Instructors
+
+- Ankush Khanna (https://linkedin.com/in/ankushkhanna2)
+- Sejal Vaidya (https://linkedin.com/in/vaidyasejal)
+- Victoria Perez Mola (https://www.linkedin.com/in/victoriaperezmola/)
+- Kalise Richmond (https://www.linkedin.com/in/kaliserichmond/)
+- Jeff Hale (https://www.linkedin.com/in/-jeffhale/)
+- Alexey Grigorev (https://linkedin.com/in/agrigorev)
+
+## Tools
+
+For this course, you'll need to have the following software installed on your computer:
+
+* Docker and Docker-Compose
+* Python 3 (e.g. via [Anaconda](https://www.anaconda.com/products/individual))
 * Google Cloud SDK
-* Docker with docker-compose
 * Terraform
 
-If you have problems setting up the env, you can check this video:
+See [Week 1](week_1_basics_n_setup) for more details about installing these tools
 
-* [Setting up the environment on cloud VM](https://www.youtube.com/watch?v=ae-CV2KfoN0&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
-  * Generating SSH keys
-  * Creating a virtual machine on GCP
-  * Connecting to the VM with SSH
-  * Installing Anaconda
-  * Installing Docker
-  * Creating SSH `config` file
-  * Accessing the remote machine with VS Code and SSH remote
-  * Installing docker-compose
-  * Installing pgcli
-  * Port-forwarding with VS code: connecting to pgAdmin and Jupyter from the local computer
-  * Installing Terraform
-  * Using `sftp` for putting the credentials to the remote machine
-  * Shutting down and removing the instance
 
-### Homework
 
-* [Homework](homework.md)
-* [Solution](https://www.youtube.com/watch?v=HxHqH2ARfxM&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
+## FAQ
 
-## Community notes
 
-Did you take notes? You can share them here
+* **Q**: I registered, but haven't received a confirmation email. Is it normal?
+  **A**: Yes, it's normal. It's not automated. But you will receive an email eventually.
+* **Q**: At what time of the day will it happen?
+  **A**: Office hours will happen on Mondays at 17:00 CET. But everything will be recorded, so you can watch it whenever it's convenient for you.
+* **Q**: Will there be a certificate?
+  **A**: Yes, if you complete the project.
+* **Q**: I'm 100% not sure I'll be able to attend. Can I still sign up?
+  **A**: Yes, please do! You'll receive all the updates and then you can watch the course at your own pace.
+* **Q**: Do you plan to run a ML engineering course as well?
+**A**: Glad you asked. [We do](https://github.com/alexeygrigorev/mlbookcamp-code/tree/master/course-zoomcamp) :)
+* **Q**: I'm stuck! I've got a technical question!
+  **A**: Ask on Slack! And check out the [student FAQ](https://docs.google.com/document/d/19bnYs80DwuUimHM65UV3sylsCn2j1vziPOwzBwQrebw/edit?usp=sharing); many common issues have been answered already. If your issue is solved, please add how you solved it to the document. Thanks!
 
-* [Notes from Alvaro Navas](https://github.com/ziritrion/dataeng-zoomcamp/blob/main/notes/1_intro.md)
-* [Notes from Abd](https://itnadigital.notion.site/Week-1-Introduction-f18de7e69eb4453594175d0b1334b2f4)
-* [Notes from Aaron](https://github.com/ABZ-Aaron/DataEngineerZoomCamp/blob/master/week_1_basics_n_setup/README.md)
-* [Notes from Faisal](https://github.com/FaisalMohd/data-engineering-zoomcamp/blob/main/week_1_basics_n_setup/Notes/DE%20Zoomcamp%20Week-1.pdf)
-* [Michael Harty's Notes](https://github.com/mharty3/data_engineering_zoomcamp_2022/tree/main/week01)
-* [Blog post from Isaac Kargar](https://kargarisaac.github.io/blog/data%20engineering/jupyter/2022/01/18/data-engineering-w1.html)
-* [Handwritten Notes By Mahmoud Zaher](https://github.com/zaherweb/DataEngineering/blob/master/week%201.pdf)
 
-* Add your notes here
+
+## Supporters and partners
+
+Thanks to the course sponsors for making it possible to create this course
+
+<p align="center">
+  <a href="https://www.prefect.io/">
+    <img height="100" src="https://github.com/DataTalksClub/mlops-zoomcamp/raw/main/images/prefect.png">
+  </a>
+</p>
+
+Do you want to support our course and our community? Please reach out to [alexey@datatalks.club](alexey@datatalks.club)
+
