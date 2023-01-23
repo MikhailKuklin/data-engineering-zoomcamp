@@ -1,6 +1,10 @@
 # when run the script, keep attention to path. For example, to be able to save it to data/ folder, one has to run from the root folder
+# to register gcp block in cli: prefect block register -m prefect_gcp
+# then go to Prefect block: GCS bucket 
+# add key 
 
-from pathlib import Path
+
+from pathlib import Path 
 import pandas as pd
 from prefect import flow, task
 from prefect_gcp.cloud_storage import GcsBucket
@@ -36,12 +40,12 @@ def write_local(df: pd.DataFrame, color: str, dataset_file: str) -> Path:
     return path
 
 
-#@task()
-#def write_gcs(path: Path) -> None:
-#    """Upload local parquet file to GCS"""
-#    gcs_block = GcsBucket.load("zoom-gcs")
-#    gcs_block.upload_from_path(from_path=path, to_path=path)
-#    return
+@task()
+def write_gcs(path: Path) -> None:
+    """Upload local parquet file to GCS"""
+    gcs_block = GcsBucket.load("prefect-gcs")
+    gcs_block.upload_from_path(from_path=path, to_path=path)
+    return
 
 
 @flow()
