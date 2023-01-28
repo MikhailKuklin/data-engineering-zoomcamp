@@ -22,7 +22,7 @@ infrastructure:
   labels: {}
   name: null
   command: null
-  image: mikhailkuklin/prefect_de:dezoomcamp
+  image: mikhailkuklin/prefect_de:dezoomcamp2
   image_pull_policy: ALWAYS
   image_registry: null
   networks: []
