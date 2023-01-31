@@ -40,7 +40,7 @@ def etl_web_to_gcs() -> None:
     dataset_url = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/{color}/{dataset_file}.csv.gz"
     df = fetch(dataset_url)
     df_clean = clean(df)
-    path = write_local(df_clean, color, dataset_file)
+    path = Path(f"data/{dataset_file}.parquet")
     write_gcs(path)
 
 if __name__ == "__main__":
