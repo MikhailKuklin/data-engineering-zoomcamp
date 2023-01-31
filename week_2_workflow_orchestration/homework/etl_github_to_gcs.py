@@ -24,13 +24,6 @@ def clean(df=pd.DataFrame) -> pd.DataFrame:
     return df
 
 @task()
-def write_local(df: pd.DataFrame, color: str, dataset_file: str) -> Path:
-    """Write DataFrame out locally as parquet file"""
-    path = Path(f"data/{dataset_file}.parquet")
-    df.to_parquet(path, compression="gzip")
-    return path
-
-@task()
 def write_gcs(path: Path) -> None:
     """Upload local parquet file to GCS"""
     gcs_block = GcsBucket.load("prefect-gcs")
