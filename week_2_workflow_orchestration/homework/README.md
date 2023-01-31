@@ -21,7 +21,7 @@ Google Storage -> Buckets -> Create a bucket
 
 Step 2. Register Prefect block for enabling GCS bucket
 
-'prefect block register -m prefect_gcp'
+`prefect block register -m prefect_gcp`
 
 Step 3. Create Prefect block for enabling GCS bucket
 
@@ -31,7 +31,7 @@ To get credentials, IAM & Admin -> Service Accounts -> Create service account ->
 
 Step 4. Run the code
 
-'python etl_web_to_gcs.py'
+`python etl_web_to_gcs.py`
 
 ## Question 2. Scheduling with Cron
 
