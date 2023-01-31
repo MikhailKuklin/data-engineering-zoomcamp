@@ -15,7 +15,23 @@ How many rows does that dataset have?
 
 ### Solution
 
-etl_web_to_gcs.py
+Step 1. Create GCS bucket in GCP
+
+Google Storage -> Buckets -> Create a bucket
+
+Step 2. Register Prefect block for enabling GCS bucket
+
+'prefect block register -m prefect_gcp'
+
+Step 3. Create Prefect block for enabling GCS bucket
+
+Prefect UI -> Blocks -> GCS bucket -> GCP Credentials
+
+To get credentials, IAM & Admin -> Service Accounts -> Create service account -> Select a role -> BigQuery Admin, Storage Admin -> Keys -> Create a new key -> Download -> Add to Prefect
+
+Step 4. Run the code
+
+'python etl_web_to_gcs.py'
 
 ## Question 2. Scheduling with Cron
 
