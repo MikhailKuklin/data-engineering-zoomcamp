@@ -69,4 +69,16 @@ Make sure you have the parquet data files for Yellow taxi data for Feb. 2019 and
 
 ## Solution
 
-etl_gcs_to_bq.py (WIP)
+*Step 1* Build deployment
+
+`prefect deployment build etl_gcs_to_bq.py:etl_parent_flow -n 'GCS-to-BigQuery'`
+
+*Step 2* Modify parameters in yaml infra file
+
+*Step 3* Apply
+
+`prefect deployment apply etl_parent_flow-deployment.yaml `
+
+*Step 4* Run agent
+
+`prefect agent start --work-queue "default"`
