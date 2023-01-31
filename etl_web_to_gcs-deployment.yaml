@@ -1,9 +1,9 @@
 ###
 ### A complete description of a Prefect Deployment for flow 'etl-web-to-gcs'
 ###
-name: etl_github2
+name: etl_github3
 description: The main ETL function
-version: e733f6e81bd3d5c9651d4bae3e8c2346
+version: 16c3207824dce4fb3ada39f955793bc9
 # The work queue that will handle this deployment's runs
 work_queue_name: default
 tags: []
@@ -36,7 +36,7 @@ storage:
   block_type_slug: github
   _block_type_slug: github
 path: ''
-entrypoint: week_2_workflow_orchestration/homework/etl_github_to_gcs.py:etl_web_to_gcs
+entrypoint: week_2_workflow_orchestration/homework/etl_github_to_gcs_q5.py:etl_web_to_gcs
 parameter_openapi_schema:
   title: Parameters
   type: object
