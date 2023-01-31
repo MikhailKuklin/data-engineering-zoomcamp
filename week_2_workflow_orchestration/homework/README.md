@@ -101,7 +101,20 @@ How many rows were processed by the script?
 ## Solution
 
 *Step 1* Prefect UI -> Blocks -> GitHub (token should be generated in GitHub in prior)
-*Step 2* 
+
+*Step 2* Build infra file
+
+`prefect deployment build -n etl_github2 -sb github/zoomcamp ./week_2_workflow_orchestration/homework/etl_github_to_gcs.py:etl_web_to_gcs`
+
+*etl_github2*: deployment name
+*github/zoomcamp*: name of the block in Prefect
+*./week_2_workflow_orchestration/homework/etl_github_to_gcs.py:etl_web_to_gcs`*: path to the flow which should be identical to GitHub from root directory
+
+*Step 3*: Apply
+
+`prefect deployment apply etl_web_to_gcs-deployment.yaml`
+
+*Step 4*: Initiate the run from Prefect UI, start the agent
 
 ## Question 6. Secrets
 
