@@ -78,10 +78,10 @@ What is the best strategy to optimize the table if query always filter by pickup
 ## Solution
 
 ```sh
-CREATE OR REPLACE TABLE `dezoomcamp_west6.fhv_tripdata2019_part1`
+CREATE OR REPLACE TABLE `dezoomcamp_west6.fhv_tripdata2019_part_clust`
 PARTITION BY DATE(pickup_datetime)
 CLUSTER BY affiliated_base_number AS
-SELECT * FROM `dezoomcamp_west6.fhv_tripdata2019_csv`
+SELECT * FROM `dezoomcamp_west6.fhv_tripdata2019_mat`
 ```
 
 Answer: Partition by pickup_datetime Cluster on affiliated_base_number
@@ -96,7 +96,13 @@ Use the BQ table you created earlier in your from clause and note the estimated 
 
 ```sh
 SELECT COUNT(DISTINCT affiliated_base_number)
-FROM `dezoomcamp_west6.fhv_tripdata2019_part2`
+FROM `dezoomcamp_west6.fhv_tripdata2019_part_clust`
+WHERE CAST(pickup_datetime as DATE) BETWEEN "2019-01-03" AND "2019-31-03";
+```
+
+```sh
+SELECT COUNT(DISTINCT affiliated_base_number)
+FROM `dezoomcamp_west6.fhv_tripdata2019_mat`
 WHERE CAST(pickup_datetime as DATE) BETWEEN "2019-01-03" AND "2019-31-03";
 ```
 
