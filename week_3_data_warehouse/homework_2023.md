@@ -12,15 +12,15 @@ What is the count for fhv vehicle records for year 2019?
 
 *Step 2* In GCP, create a table in BigQuery using the data from GCP
 
---- Create external table for 2019 ---
+```sh
 CREATE OR REPLACE EXTERNAL TABLE dezoomcamp_west6.fhv_tripdata2019_csv
 OPTIONS (
   format = 'csv',
   uris = ['gs://dtc_data_lake_prime-framing-374716/data/fhv_tripdata_2019-*.csv.gz']
 );
 
---- Query to count ---
 SELECT count(*) FROM `dezoomcamp_west6.fhv_tripdata2019_csv`
+```
 
 Answer: 43244696
 
