@@ -1,5 +1,7 @@
 ## Week 4 Homework 
 
+All the work has been implemented using dbt Cloud.
+
 ### Question 1: 
 **What is the count of records in the model fact_trips after running all models with the test run variable disabled and filtering for 2019 and 2020 data only (pickup datetime)**  
 You'll need to have completed the "Build the first dbt models" video and have been able to run the models via the CLI. 
