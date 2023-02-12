@@ -1,38 +1,65 @@
 ## Week 4 Homework 
-[Form](https://forms.gle/B5CXshja3MRbscVG8) 
-
-We will use all the knowledge learned in this week. Please answer your questions via form above.  
-* You can submit your homework multiple times. In this case, only the last submission will be used. 
-
-**Deadline** for the homework is 23rd Feb 2022 22:00 CET.
-
-
-In this homework, we'll use the models developed during the week 4 videos and enhance the already presented dbt project using the already loaded Taxi data for fhv vehicles for year 2019 in our DWH.
-
-We will use the data loaded for:
-* Building a source table: stg_fhv_tripdata
-* Building a fact table: fact_fhv_trips
-* Create a dashboard 
-
-If you don't have access to GCP, you can do this locally using the ingested data from your Postgres database
-instead. If you have access to GCP, you don't need to do it for local Postgres -
-only if you want to.
 
 ### Question 1: 
 **What is the count of records in the model fact_trips after running all models with the test run variable disabled and filtering for 2019 and 2020 data only (pickup datetime)**  
 You'll need to have completed the "Build the first dbt models" video and have been able to run the models via the CLI. 
 You should find the views and models for querying in your DWH.
 
+## Solution:
+
+*Step 1* In dbt, run `dbt run --var 'is_test_run: false'`
+*Step 2* In Big Query, run the query:
+
+```sh
+SELECT count(*) FROM prime-framing-374716.dbt_mkuklin.fact_trips
+WHERE EXTRACT(YEAR FROM pickup_datetime) IN  (2019, 2020) 
+```
+
+Answer: 61597015
+
 ### Question 2: 
 **What is the distribution between service type filtering by years 2019 and 2020 data as done in the videos**
 
 You will need to complete "Visualising the data" videos, either using data studio or metabase. 
+
+Answer: from the visualization, 89.1/10.1
 
 ### Question 3: 
 **What is the count of records in the model stg_fhv_tripdata after running all models with the test run variable disabled (:false)**  
 
 Create a staging model for the fhv data for 2019 and do not add a deduplication step. Run it via the CLI without limits (is_test_run: false).
 Filter records with pickup time in year 2019.
+
+## Solution: 
+
+*Step 1* Create SQL model for fhv_tripdata (models/stg/sts_fhv_tripdata_q2.sql)
+
+```sh
+{{ config(materialized='view')}}
+
+select
+    dispatching_base_num,
+
+    cast(PULocationID as integer) as pickup_locationid,
+    cast(DOLocationID as integer) as dropoff_locationid,
+
+    --timestamps
+    cast(pickup_datetime as timestamp) as pickup_datetime,
+    cast(dropoff_datetime as timestamp) as dropoff_datetime,
+
+    --trip info
+    sr_flag
+from {{ source('staging', 'fhv_tripdata_csv')}}
+```
+
+*Step 2* Run query:
+
+```sh
+SELECT count(*) FROM `prime-framing-374716.dbt_mkuklin.stg_fhv_tripdata_q2`
+where extract(year from pickup_datetime) in (2019)
+```
+
+Answer: 43244696
 
 ### Question 4: 
 **What is the count of records in the model fact_fhv_trips after running all dependencies with the test run variable disabled (:false)**  
@@ -41,8 +68,10 @@ Create a core model for the stg_fhv_tripdata joining with dim_zones.
 Similar to what we've done in fact_trips, keep only records with known pickup and dropoff locations entries for pickup and dropoff locations. 
 Run it via the CLI without limits (is_test_run: false) and filter records with pickup time in year 2019.
 
+## Solution: TODO
+
 ### Question 5: 
 **What is the month with the biggest amount of rides after building a tile for the fact_fhv_trips table**
 Create a dashboard with some tiles that you find interesting to explore the data. One tile should show the amount of trips per month, as done in the videos for fact_trips, based on the fact_fhv_trips table.
 
-
+## Solution: TODO
