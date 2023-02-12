@@ -12,4 +12,4 @@ select
 
     --trip info
     sr_flag
-from {{ source('staging', 'fhv_tripdata_csv')}}
+from {{ source('staging', 'fhv_tripdata_mat')}}
