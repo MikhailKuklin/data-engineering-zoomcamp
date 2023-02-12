@@ -72,11 +72,32 @@ Run it via the CLI without limits (is_test_run: false) and filter records with p
 
 ## Solution: 
 
+*Step 1* Create SQL model for fhv_tripdata (models/stg/stg_fhv_tripdata_q4.sql)
+
+*Step 2* Modify model/core/schema.yaml by adding:
+
+```sh
+models:
+
+    - name: stg_fhv_tripdata_q4
+      description: >
+```
+
+*Step 3* Run:
+
+```sh
+dbt run --select stg_fhv_trip_data_mat --var 'is_test_run: false'
+```
+
+*Step 4* Create SQL model for joining with taxi zone (models/core/fact_fhv_tripdata_q4) and run:
+
+```sh
+dbt run --select fact_fhv_tripdata_q4 --var 'is_test_run: false'
+```
+
 ### Question 5: 
 **What is the month with the biggest amount of rides after building a tile for the fact_fhv_trips table**
 Create a dashboard with some tiles that you find interesting to explore the data. One tile should show the amount of trips per month, as done in the videos for fact_trips, based on the fact_fhv_trips table.
 
 ## Solution: TODO
-
-
 
