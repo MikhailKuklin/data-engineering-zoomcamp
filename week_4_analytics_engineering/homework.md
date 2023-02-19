@@ -24,7 +24,7 @@ Answer: 61648442
 
 You will need to complete "Visualising the data" videos, either using data studio or metabase. 
 
-Answer: from the visualization, 89.1/10.1
+Answer: from the [report](fact_trips.pdf), 89.1/10.1
 
 ### Question 3: 
 **What is the count of records in the model stg_fhv_tripdata after running all models with the test run variable disabled (:false)**  
