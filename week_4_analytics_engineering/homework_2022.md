@@ -17,7 +17,7 @@ SELECT count(*) FROM prime-framing-374716.dbt_mkuklin.fact_trips
 WHERE EXTRACT(YEAR FROM pickup_datetime) IN  (2019, 2020) 
 ```
 
-Answer: 61597015
+Answer: 61648442
 
 ### Question 2: 
 **What is the distribution between service type filtering by years 2019 and 2020 data as done in the videos**
@@ -83,17 +83,20 @@ models:
       description: >
 ```
 
-*Step 3* Run:
+*Step 3* Create SQL model for joining with taxi zone (models/core/fact_fhv_tripdata_q4) and run:
 
 ```sh
-dbt run --select stg_fhv_trip_data_mat --var 'is_test_run: false'
+dbt build --select stg_fhv_trip_data_mat --var 'is_test_run: false'
 ```
 
-*Step 4* Create SQL model for joining with taxi zone (models/core/fact_fhv_tripdata_q4) and run:
+*Step 4* In BigQuery, run the query:
 
 ```sh
-dbt run --select fact_fhv_tripdata_q4 --var 'is_test_run: false'
+SELECT count(*) FROM `prime-framing-374716.dbt_mkuklin.fact_fhv_tripdata_q4`
+where extract(year from pickup_datetime) in (2019)
 ```
+
+Answer: 22998722
 
 ### Question 5: 
 **What is the month with the biggest amount of rides after building a tile for the fact_fhv_trips table**
