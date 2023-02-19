@@ -104,5 +104,5 @@ Create a dashboard with some tiles that you find interesting to explore the data
 
 ## Solution: 
 
-January according to the visualization
+January according to the [report](fact_trips.pdf)
 
