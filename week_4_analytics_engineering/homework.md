@@ -1,4 +1,4 @@
-## Week 4 Homework 2022
+## Week 4 Homework
 
 All the work has been implemented using dbt Cloud.
 
