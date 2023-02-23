@@ -138,7 +138,13 @@ Crown Heights North
 ## Solution:
 
 
+```sh
+df_join1 = df.join(df_zones, df.PULocationID == df_zones.LocationID)
 
+df_join1.groupby("Zone").count().orderBy(desc("count")).display()
+```
+
+Answer: Crown Heights North
 
 ## Submitting the solutions
 
