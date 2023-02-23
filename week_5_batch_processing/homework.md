@@ -23,7 +23,7 @@ What's the output?
 
 Answer: 3.3.2
 
-## Question 2. HVFHW February 2021
+## Question 2. HVFHW June 2021
 
 HVFHW June 2021
 
@@ -59,52 +59,85 @@ Answer: 24MB
 
 ## Question 3. Count records 
 
-How many taxi trips were there on February 15?
+How many taxi trips were there on June 15?
 
-Consider only trips that started on February 15.
+Consider only trips that started on June 15.
 
+- 308,164
+
+- 12,856
+
+- 452,470
+
+- 50,982
+
+## Solution:
+
+`df.filter(f.col("pickup_datetime").cast("date") == "2021-06-15").count()`
+
+```sh
+df.createOrReplaceTempView('question5')
+
+spark.sql("""
+SELECT COUNT(*) FROM question5 
+WHERE (CAST(pickup_datetime as DATE) = '2021-06-15')
+""").display()
+```
+
+Answer: 452,470
 
 ## Question 4. Longest trip for each day
 
 Now calculate the duration for each trip.
+How long was the longest trip in Hours?
 
-Trip starting on which day was the longest? 
+66.87 Hours
+243.44 Hours
+7.68 Hours
+3.32 Hours
+
+## Solution:
+
+```sh
+from pyspark.sql.functions import col, unix_timestamp, max
+
+df = df.withColumn('pickup_timestamp', unix_timestamp(col('pickup_datetime')))
+df = df.withColumn('dropoff_timestamp', unix_timestamp(col('dropoff_datetime')))
+df = df.withColumn('diff_seconds', col('dropoff_timestamp') - col('pickup_timestamp'))
+df = df.withColumn('diff_hours', col('diff_seconds') / 3600)
+
+max_diff_hours = df.agg(max(col('diff_hours')).alias('max_diff_hours')).collect()[0]['max_diff_hours']
+print(f"The maximum value in the diff_hours column is {max_diff_hours:.2f} hours.")
+```
+
+Answer: 66.87 Hours
+
+## Question 5. User Interface
+
+Spark’s User Interface which shows application's dashboard runs on which local port?
+
+80
+443
+4040
+8080
+
+Answer: 4040
+
+## Question 6. Most frequent pickup location zone
+
+Load the zone lookup data into a temp view in Spark
+Zone Data
+
+Using the zone lookup data and the fhvhv June 2021 data, what is the name of the most frequent pickup location zone?
+
+East Chelsea
+Astoria
+Union Sq
+Crown Heights North
+
+## Solution:
 
 
-## Question 5. Most frequent `dispatching_base_num`
-
-Now find the most frequently occurring `dispatching_base_num` 
-in this dataset.
-
-How many stages this spark job has?
-
-> Note: the answer may depend on how you write the query,
-> so there are multiple correct answers. 
-> Select the one you have.
-
-
-## Question 6. Most common locations pair
-
-Find the most common pickup-dropoff pair. 
-
-For example:
-
-"Jamaica Bay / Clinton East"
-
-Enter two zone names separated by a slash
-
-If any of the zone names are unknown (missing), use "Unknown". For example, "Unknown / Clinton East". 
-
-
-## Bonus question. Join type
-
-(not graded) 
-
-For finding the answer to Q6, you'll need to perform a join.
-
-What type of join is it?
-
-And how many stages your spark job has?
 
 
 ## Submitting the solutions
