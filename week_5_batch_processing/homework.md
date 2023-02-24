@@ -1,7 +1,6 @@
 ## Week 5 Homework
 
-In this homework we'll put what we learned about Spark
-in practice.
+Working notebook: week_5.ipynb (Databricks)
 
 We'll use high volume for-hire vehicles (HVFHV) dataset for that.
 
